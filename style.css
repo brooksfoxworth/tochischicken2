@@ -15,6 +15,15 @@
     --shadow-card: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Menu Item Images */
+.menu-item-image {
+    width: 7rem;        /* w-28 */
+    height: 7rem;       /* h-28 */
+    object-fit: cover;  /* object-cover */
+    border-radius: 0.5rem; /* rounded-lg */
+    flex-shrink: 0;     /* flex-shrink-0 */
+}
+
 /* Swiper Container Fixes */
 .swiper-container-fix {
     overflow: visible;
