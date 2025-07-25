@@ -1,3 +1,5 @@
+import { MenuData } from './menuData.js';
+
 /**
  * Cart Management Module
  * Handles all cart-related functionality including adding/removing items and updating UI
@@ -258,7 +260,7 @@ class CartManager {
         }
         
         // Calculate totals
-        const subtotal = this.cart.reduce((sum, item) => sum + (item.basePrice * item.quantity), 0);
+        const subtotal = this.cart.reduce((sum, item) => sum + item.totalPrice, 0);
         const tax = subtotal * 0.07; // 7% tax
         const total = subtotal + tax;
         
@@ -287,24 +289,31 @@ class CartManager {
                     <div class="text-sm text-gray-600">Add-ons:</div>
                     <ul class="text-sm text-gray-600 ml-2">
                         ${item.addons.map(addon => 
-                            `<li>• ${addon.name} (+$${parseFloat(addon.price).toFixed(2)})</li>`
+                            `<li>• ${addon.name} ($${parseFloat(addon.price).toFixed(2)})</li>`
                         ).join('')}
                     </ul>
                 </div>` : '';
 
             itemElement.innerHTML = `
                 <div class="flex items-start">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex justify-between items-start">
-                            <h4 class="text-base font-medium text-gray-900 break-words pr-2">${item.name}</h4>
-                            <div class="ml-4 text-right flex-shrink-0">
-                                <div class="text-base font-medium text-gray-900">$${itemTotal.toFixed(2)}</div>
-                                <div class="text-sm text-gray-500">$${(item.basePrice + addonsTotal).toFixed(2)} × ${item.quantity}</div>
-                            </div>
+                    <div class="flex-1 min-w-0 pr-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="text-base font-semibold text-gray-900 pr-2">${item.name}</h4>
+                            <div class="text-base font-bold text-[var(--primary-color)] flex-shrink-0">$${itemTotal.toFixed(2)}</div>
                         </div>
-                        ${heatLevelDisplay}
-                        ${addonsList}
+
+                        <div class="text-sm text-gray-600">
+                            <div class="mb-0.5">Unit: $${(item.basePrice + addonsTotal).toFixed(2)} &times; ${item.quantity}</div>
+                            
+                            ${item.addons && item.addons.length > 0 && item.basePrice.toFixed(2) !== (item.basePrice + addonsTotal).toFixed(2) ? 
+                                `<div class="mb-0.5">Base: $${item.basePrice.toFixed(2)}</div>` : ''
+                            }
+                            
+                            ${heatLevelDisplay}
+                            ${addonsList}
+                        </div>
                     </div>
+                    
                     <div class="ml-4 flex-shrink-0 pt-1">
                         <div class="flex items-center border rounded-md bg-white">
                             <button type="button" class="decrease-quantity px-3 py-1 text-gray-600 hover:bg-gray-100 transition-colors" 
@@ -411,10 +420,10 @@ class CartManager {
     }
 
     /**
-     * Get total cart value
+     * Get total cart value including base price and all add-ons
      */
     getCartTotal() {
-        return this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        return this.cart.reduce((total, item) => total + item.totalPrice, 0);
     }
 
     /**

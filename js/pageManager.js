@@ -1,8 +1,15 @@
+import { MenuData } from './menuData.js';
+import { PageContent } from './pageContent.js';
+
 /**
  * Page Management Module
  * Handles page loading, content rendering, and page-specific functionality
  */
 class PageManager {
+    // Store references to bound event handlers for cleanup
+    _boundDelegatedMenuClick = null;
+    _boundDelegatedMenuChange = null;
+
     constructor(cartManager) {
         this.cartManager = cartManager;
         this.initializePageElements();
@@ -96,8 +103,8 @@ class PageManager {
      */
     getPageContent(page) {
         // Check if we have content for this page in PageContent
-        if (window.PageContent && window.PageContent[page]) {
-            return window.PageContent[page];
+        if (PageContent && PageContent[page]) {
+            return PageContent[page];
         }
         
         // Special handling for menu page
@@ -117,7 +124,7 @@ class PageManager {
             </div>
         `;
         
-        return PageContent[page] || PageContent.home;
+        return PageContent && (PageContent[page] || PageContent.home);
     }
 
     /**
@@ -412,20 +419,64 @@ class PageManager {
     }
 
     /**
-     * Initialize event listeners for menu items
+     * Initialize event listeners for menu items using event delegation
      */
     initMenuEventListeners() {
-        // Remove any existing event listeners to prevent duplicates
-        document.body.removeEventListener('click', this.handleAddToCartClick);
-        document.removeEventListener('change', this.handleHeatLevelChange);
+        // Choose a stable parent element. 'this.mainContent' is preferred as its innerHTML is updated,
+        // but the element itself stays. 'document.body' is a broader fallback if mainContent itself is replaced.
+        const targetElement = this.mainContent || document.body;
         
-        // Bind the methods to the current instance
-        this.handleAddToCartClick = this.handleAddToCartClick.bind(this);
-        this.handleHeatLevelChange = this.handleHeatLevelChange.bind(this);
+        // If listeners were previously attached (from a prior call to initMenuEventListeners),
+        // remove them first to prevent attaching duplicates.
+        if (this._boundDelegatedMenuClick) {
+            targetElement.removeEventListener('click', this._boundDelegatedMenuClick);
+        }
+        if (this._boundDelegatedMenuChange) {
+            targetElement.removeEventListener('change', this._boundDelegatedMenuChange);
+        }
         
-        // Add new event listeners
-        document.body.addEventListener('click', this.handleAddToCartClick, true);
-        document.addEventListener('change', this.handleHeatLevelChange);
+        // Store bound functions and attach new delegated listeners.
+        // These new methods will act as the single entry point for all delegated events.
+        this._boundDelegatedMenuClick = this._handleDelegatedMenuClick.bind(this);
+        this._boundDelegatedMenuChange = this._handleDelegatedMenuChange.bind(this);
+        
+        targetElement.addEventListener('click', this._boundDelegatedMenuClick);
+        targetElement.addEventListener('change', this._boundDelegatedMenuChange);
+    }
+
+    /**
+     * Handle delegated menu item clicks
+     * @private
+     */
+    _handleDelegatedMenuClick(e) {
+        // If the click target (or its closest parent) is a button with data-item-id, call the add-to-cart handler.
+        const addToCartBtn = e.target.closest('button[data-item-id]');
+        if (addToCartBtn) {
+            // Prevent default form submission or other actions if this button is part of a form
+            e.preventDefault();
+            // Call the original handleAddToCartClick, ensuring it receives the event object
+            this.handleAddToCartClick(e);
+            return; // Stop processing further delegated clicks if this one was handled
+        }
+        // Add any other specific click delegation logic here if needed for menu page elements
+    }
+
+    /**
+     * Handle delegated menu item changes
+     * @private
+     */
+    _handleDelegatedMenuChange(e) {
+        // If the change target is a select element for heat level
+        if (e.target.matches('select[name="heat-level"]')) {
+            this.handleHeatLevelChange(e); // Call the original handler for heat level
+        }
+        // If the change target is an input checkbox (for add-ons)
+        else if (e.target.matches('input[type="checkbox"]')) {
+            // Add-on processing itself happens on the 'Add to Cart' button click.
+            // If there's specific visual feedback or immediate logic needed *on checkbox change*,
+            // it would go here or in a dedicated handler. For now, no additional action needed here for functionality.
+            this.handleHeatLevelChange(e);
+        }
     }
 
     /**
@@ -479,10 +530,10 @@ class PageManager {
         
         // Get selected add-ons
         const addons = [];
-        const addonCheckboxes = menuItem.querySelectorAll('input[type="checkbox"]:checked');
-        addonCheckboxes.forEach(checkbox => {
-            const name = (checkbox.getAttribute('name') || '').trim() || 'Add-on';
-            const price = parseFloat(checkbox.value) || 0;
+        menuItem.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+            const name = checkbox.value;
+            const price = parseFloat(checkbox.getAttribute('data-price')) || 0;
+            console.log('DEBUG: Addon checkbox data-price:', checkbox.getAttribute('data-price'), 'Parsed price:', price, 'Checkbox element:', checkbox);
             addons.push({ 
                 name: checkbox.nextElementSibling?.textContent.trim() || name,
                 price: price

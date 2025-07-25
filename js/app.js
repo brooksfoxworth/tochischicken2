@@ -26,9 +26,7 @@ class PierogiApp {
             this.pageManager = new PageManager(this.cartManager);
             this.navigationManager = new NavigationManager(this.pageManager);
             
-            // Make MenuData and PageContent available globally for legacy code
-            window.MenuData = MenuData;
-            window.PageContent = PageContent;
+            // PageContent is now imported directly where needed
 
             // Load initial page
             const initialPage = window.location.hash ? 
