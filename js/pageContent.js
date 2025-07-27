@@ -6,40 +6,28 @@ const PageContent = {
     home: `
         <div id="home-content">
             <!-- Hero Section -->
-            <div class="relative pt-0 pb-6">
-                <!-- Content -->
+            <div id="hero-main-wrapper" class="relative pt-0 pb-6 overflow-hidden">
                 <div class="container mx-auto px-4 text-center relative z-10">
-                    <!-- Smoke Particle Effect Container -->
-                    <div id="hero-container" class="absolute inset-0 w-full h-full overflow-hidden"></div>
-                    <!-- Logo -->
                     <div class="mb-2">
                         <img src="./assets/images/tochislogo.png" alt="Tochi's Hot Chicken" class="h-32 md:h-48 mx-auto">
                     </div>
                     
-                    <!-- Tagline -->
                     <div class="relative my-4 max-w-3xl mx-auto">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center leading-none">
-                            <div class="py-1">The <span class="text-[var(--primary-color)]">Hottest</span> Chicken</div>
-                            <div class="py-1 text-3xl md:text-4xl lg:text-5xl text-[var(--primary-color)]">in Myrtle Beach</div>
+                        <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl text-center">
+                            <div>The <span class="text-[var(--primary-color)]">Hottest</span> Chicken</div>
+                            <div class="text-[var(--primary-color)]">in Myrtle Beach</div>
                         </h1>
                     </div>
                     
-                    <!-- CTA Button -->
                     <button class="bg-[var(--primary-color)] text-white px-8 py-4 rounded-xl font-bold btn-animated card-hover shadow-lg text-lg border-2 border-transparent hover:border-yellow-400 hover:shadow-xl mb-12" 
                             onclick="window.PierogiApp.getNavigationManager().navigateToPage('menu')">
                         View Our Menu
                     </button>
                     
-                    <!-- Chicken Image with Smoke Effect -->
                     <div class="relative w-full h-64 -mt-2">
-                        <div id="hero-container" class="absolute inset-0 w-full h-full overflow-visible"></div>
                         <img src="./assets/images/chickenpng.png" 
                              alt="Delicious Hot Chicken" 
                              class="relative z-10 mx-auto h-full w-auto object-contain">
-                    </div>
-                    <!-- Debug element to test if smoke is rendering -->
-                    <div id="smoke-debug" style="position: fixed; top: 10px; right: 10px; background: red; color: white; padding: 5px; z-index: 1000; display: none;">
-                        Smoke Effect Active
                     </div>
                 </div>
             </div>
@@ -77,39 +65,65 @@ const PageContent = {
                 </div>
                 <div class="swiper game-day-swiper max-w-6xl mx-auto swiper-container-fix">
                   <div class="swiper-wrapper items-stretch">
+                    <!-- Tochi's #1 -->
                     <div class="swiper-slide">
                       <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-200 group swiper-card" style="animation: slideInLeft 0.6s ease-out 0.6s both;">
                           <div class="relative">
-                              <img src="https://images.unsplash.com/photo-1624726175516-1433f389af8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Tochi's Hot Chicken" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                              <img src="https://images.unsplash.com/photo-1624726175516-1433f389af8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Tochi's #1" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                               <div class="absolute bottom-0 left-0 right-0 p-4">
-                                  <h3 class="text-xl font-bold text-white">Tochi's Hot Chicken</h3>
+                                  <h3 class="text-xl font-bold text-white">Tochi's #1</h3>
+                                  <p class="text-yellow-200 text-sm">$11.99</p>
                               </div>
                           </div>
                           <div class="p-4">
-                              <p class="text-gray-700 text-sm mb-4">Our signature sauce - the perfect blend of heat and flavor that made us famous. Not for the faint of heart!</p>
+                              <p class="text-gray-700 text-sm mb-4">Two Tenders with Fries. Served with sliced bread, pickles and Tochi sauce.</p>
                               <button class="w-full bg-gradient-to-r from-orange-500 to-yellow-400 text-white py-2 rounded-lg font-medium hover:opacity-90 transition-opacity" onclick="window.PierogiApp.getNavigationManager().navigateToPage('menu')">
-                                  View Menu
+                                  Add to Cart
                               </button>
                           </div>
                       </div>
                     </div>
+                    
+                    <!-- Tochi's #2 -->
                     <div class="swiper-slide">
                       <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-200 group swiper-card" style="animation: slideInLeft 0.6s ease-out 0.6s both;">
                           <div class="relative">
-                              <img src="https://images.unsplash.com/photo-1563371339-5c61f8bc6026?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Hot Honey Wings" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                              <img src="https://images.unsplash.com/photo-1615297928064-24977384d0da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" alt="Tochi's #2" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                               <div class="absolute bottom-0 left-0 right-0 p-4">
-                                  <h3 class="text-xl font-bold text-white">Hot Honey</h3>
+                                  <h3 class="text-xl font-bold text-white">Tochi's #2</h3>
+                                  <p class="text-yellow-200 text-sm">$13.99</p>
                               </div>
                           </div>
                           <div class="p-4">
-                              <p class="text-gray-700 text-sm mb-4">The perfect balance of sweet honey and spicy heat that will have you reaching for more. Irresistibly delicious!</p>
+                              <p class="text-gray-700 text-sm mb-4">Two Sliders with Fries. Served with coleslaw, pickles and Tochi sauce.</p>
                               <button class="w-full bg-gradient-to-r from-orange-500 to-yellow-400 text-white py-2 rounded-lg font-medium hover:opacity-90 transition-opacity" onclick="window.PierogiApp.getNavigationManager().navigateToPage('menu')">
-                                  View Menu
+                                  Add to Cart
                               </button>
                           </div>
                       </div>
+                    </div>
+                    
+                    <!-- Mac & Cheese -->
+                    <div class="swiper-slide">
+                      <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-200 group swiper-card" style="animation: slideInLeft 0.6s ease-out 0.6s both;">
+                          <div class="relative">
+                              <img src="https://images.unsplash.com/photo-1563371339-5c61f8bc6026?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Mac & Cheese" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                              <div class="absolute bottom-0 left-0 right-0 p-4">
+                                  <h3 class="text-xl font-bold text-white">Mac & Cheese</h3>
+                                  <p class="text-yellow-200 text-sm">$3.49</p>
+                              </div>
+                          </div>
+                          <div class="p-4">
+                              <p class="text-gray-700 text-sm mb-4">Creamy, cheesy macaroni that perfectly complements our spicy chicken. A customer favorite!</p>
+                              <button class="w-full bg-gradient-to-r from-orange-500 to-yellow-400 text-white py-2 rounded-lg font-medium hover:opacity-90 transition-opacity" onclick="window.PierogiApp.getNavigationManager().navigateToPage('menu')">
+                                  Add to Cart
+                              </button>
+                          </div>
+                      </div>
+                    </div>
                     </div>
                     <div class="swiper-slide">
                       <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-200 group swiper-card" style="animation: slideInLeft 0.6s ease-out 0.6s both;">

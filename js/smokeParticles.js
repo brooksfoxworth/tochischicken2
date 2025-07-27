@@ -47,6 +47,7 @@ class SmokeParticles {
         this.canvas.style.height = '100%';
         this.canvas.style.pointerEvents = 'none';
         this.canvas.style.zIndex = '1'; // Ensure it's above the container but below the image
+        this.canvas.style.opacity = '0.5'; // Make the effect more subtle
         
         // Add a red border for debugging (temporary)
         this.canvas.style.border = '1px solid red';
@@ -168,21 +169,5 @@ class SmokeParticles {
     }
 }
 
-// Initialize when window loads to ensure all elements are ready
-window.addEventListener('load', function() {
-    // Small delay to ensure everything is rendered
-    setTimeout(() => {
-        const heroContainer = document.getElementById('hero-container');
-        if (heroContainer) {
-            // Remove any existing instance
-            if (window.smokeEffect) {
-                window.smokeEffect.destroy();
-            }
-            // Create new instance
-            window.smokeEffect = new SmokeParticles('hero-container');
-            console.log('Smoke effect initialized');
-        } else {
-            console.warn('Hero container not found for smoke effect');
-        }
-    }, 100);
-});
+// Export the SmokeParticles class for use in other modules
+export { SmokeParticles };

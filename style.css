@@ -190,10 +190,6 @@ footer > div {
 /* Main content wrapper */
 body {
     margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Header Styles */
@@ -651,5 +647,48 @@ section {
     
     .bg-orange-50 {
         margin-top: 2.5rem; /* Add more space above the Fan Favorite section on mobile */
+    }
+}
+
+/* --- Hero Section Specific Styles --- */
+
+/* Main hero wrapper */
+#hero-main-wrapper {
+    background-color: var(--background-color);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Hero heading styles */
+#hero-main-wrapper h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+/* Ensure both lines are the same size and properly spaced */
+#hero-main-wrapper h1 span {
+    display: block;
+    margin: 0.2em 0;
+}
+
+/* Color for the second line and 'Hottest' word */
+#hero-main-wrapper h1 .highlight,
+#hero-main-wrapper h1 span:last-child {
+    color: var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    #hero-main-wrapper h1 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #hero-main-wrapper h1 {
+        font-size: 4rem;
     }
 }
