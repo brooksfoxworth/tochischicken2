@@ -5,30 +5,46 @@
 const PageContent = {
     home: `
         <div id="home-content">
-            <!-- Hero Section -->
-            <div id="hero-main-wrapper" class="relative pt-0 pb-6 overflow-hidden">
-                <div class="container mx-auto px-4 text-center relative z-10">
-                    <div class="mb-2">
-                        <img src="./assets/images/tochislogo.png" alt="Tochi's Hot Chicken" class="h-32 md:h-48 mx-auto">
-                    </div>
+            <!-- Main Hero Container (Full-Screen Background) -->
+            <div id="hero-main-wrapper" class="hero-main-container">
+                <!-- Animated Particle Background -->
+                <div id="particles-canvas" class="absolute inset-0 z-0"></div>
+                
+                <!-- Prominent Top-Centered Logo Section -->
+                <div class="hero-logo-section">
+                    <img src="./assets/images/tochislogo.png" alt="Tochi's Hot Chicken" class="hero-logo-prominent animate-hero-logo">
+                </div>
+                
+                <!-- Main Content Flex Area (Text and Image Side-by-Side) -->
+                <div class="hero-content-flex-area">
                     
-                    <div class="relative my-4 max-w-3xl mx-auto">
-                        <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl text-center">
-                            <div>The <span class="text-[var(--primary-color)]">Hottest</span> Chicken</div>
-                            <div class="text-[var(--primary-color)]">in Myrtle Beach</div>
+                    <!-- Left Column (Text & Button) -->
+                    <div class="hero-left-column">
+                        <!-- Headline -->
+                        <h1 class="hero-main-headline animate-hero-text">
+                            <div>The <span class="hero-hottest-word">Hottest Chicken</span></div>
+                            <div>in Myrtle Beach</div>
                         </h1>
+                        
+                        <!-- Description -->
+                        <p class="hero-main-description animate-hero-description">
+                            Nashville-style heat meets coastal flavor.
+                        </p>
+                        
+                        <!-- Call to Action -->
+                        <button class="hero-main-cta animate-hero-button"
+                                onclick="window.PierogiApp.getNavigationManager().navigateToPage('menu')">
+                            View Our Menu
+                        </button>
                     </div>
                     
-                    <button class="bg-[var(--primary-color)] text-white px-8 py-4 rounded-xl font-bold btn-animated card-hover shadow-lg text-lg border-2 border-transparent hover:border-yellow-400 hover:shadow-xl mb-12" 
-                            onclick="window.PierogiApp.getNavigationManager().navigateToPage('menu')">
-                        View Our Menu
-                    </button>
-                    
-                    <div class="relative w-full h-64 -mt-2">
+                    <!-- Right Column (Dynamic Product Image) -->
+                    <div class="hero-right-column">
                         <img src="./assets/images/chickenpng.png" 
                              alt="Delicious Hot Chicken" 
-                             class="relative z-10 mx-auto h-full w-auto object-contain">
+                             class="hero-chicken-image animate-hero-image">
                     </div>
+                    
                 </div>
             </div>
 
@@ -49,7 +65,7 @@ const PageContent = {
                                 <div class="w-full h-64 md:h-80 flex items-center justify-center overflow-hidden rounded-lg">
                                     <img src="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
                                          alt="Delicious Hot Chicken at Tochi's Hot Chicken" 
-                                         class="max-w-full max-h-full object-cover">
+                                         class="w-full h-full object-cover">
                                 </div>
                             </div>
                         </div>
@@ -68,9 +84,8 @@ const PageContent = {
                     <!-- Tochi's #1 -->
                     <div class="swiper-slide">
                       <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-200 group swiper-card" style="animation: slideInLeft 0.6s ease-out 0.6s both;">
-                          <div class="relative">
-                              <img src="https://images.unsplash.com/photo-1624726175516-1433f389af8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Tochi's #1" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                          <div class="relative bg-gradient-to-br from-orange-400 to-red-500 h-48 flex items-center justify-center">
+                              <div class="text-6xl">🍗</div>
                               <div class="absolute bottom-0 left-0 right-0 p-4">
                                   <h3 class="text-xl font-bold text-white">Tochi's #1</h3>
                                   <p class="text-yellow-200 text-sm">$11.99</p>
@@ -88,9 +103,8 @@ const PageContent = {
                     <!-- Tochi's #2 -->
                     <div class="swiper-slide">
                       <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-200 group swiper-card" style="animation: slideInLeft 0.6s ease-out 0.6s both;">
-                          <div class="relative">
-                              <img src="https://images.unsplash.com/photo-1615297928064-24977384d0da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" alt="Tochi's #2" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                          <div class="relative bg-gradient-to-br from-yellow-400 to-orange-500 h-48 flex items-center justify-center">
+                              <div class="text-6xl">🍔</div>
                               <div class="absolute bottom-0 left-0 right-0 p-4">
                                   <h3 class="text-xl font-bold text-white">Tochi's #2</h3>
                                   <p class="text-yellow-200 text-sm">$13.99</p>
@@ -108,9 +122,8 @@ const PageContent = {
                     <!-- Mac & Cheese -->
                     <div class="swiper-slide">
                       <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-200 group swiper-card" style="animation: slideInLeft 0.6s ease-out 0.6s both;">
-                          <div class="relative">
-                              <img src="https://images.unsplash.com/photo-1563371339-5c61f8bc6026?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Mac & Cheese" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                          <div class="relative bg-gradient-to-br from-yellow-300 to-orange-400 h-48 flex items-center justify-center">
+                              <div class="text-6xl">🧀</div>
                               <div class="absolute bottom-0 left-0 right-0 p-4">
                                   <h3 class="text-xl font-bold text-white">Mac & Cheese</h3>
                                   <p class="text-yellow-200 text-sm">$3.49</p>
@@ -124,23 +137,6 @@ const PageContent = {
                           </div>
                       </div>
                     </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-200 group swiper-card" style="animation: slideInLeft 0.6s ease-out 0.6s both;">
-                          <div class="relative">
-                              <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Garlic Parm Wings" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                              <div class="absolute bottom-0 left-0 right-0 p-4">
-                                  <h3 class="text-xl font-bold text-white">Garlic Parm</h3>
-                              </div>
-                          </div>
-                          <div class="p-4">
-                              <p class="text-gray-700 text-sm mb-4">Creamy, garlicky, and loaded with parmesan flavor. These wings are a garlic lover's dream come true.</p>
-                              <button class="w-full bg-gradient-to-r from-orange-500 to-yellow-400 text-white py-2 rounded-lg font-medium hover:opacity-90 transition-opacity" onclick="window.PierogiApp.getNavigationManager().navigateToPage('menu')">
-                                  View Menu
-                              </button>
-                          </div>
-                      </div>
                     </div>
                   </div>
                   <!-- Swiper navigation -->
@@ -158,8 +154,8 @@ const PageContent = {
             <!-- Wing Lovers Testimonials -->
             <div class="bg-yellow-50 backdrop-blur-sm rounded-xl p-8 mx-4 border border-yellow-100 shadow-lg" style="animation: fadeInUp 0.8s ease-out 0.6s both;">
                 <div class="text-center w-full mb-12">
-                    <h2 class="text-4xl font-bold text-gray-900 section-header">What Wing Lovers Say</h2>
-                    <p class="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">Don't just take our word for it - hear from our wing-obsessed customers</p>
+                    <h2 class="text-4xl font-bold text-gray-900 section-header">What Tochi's Fans Say</h2>
+                    <p class="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">Don't just take our word for it - hear from our Nashville hot chicken lovers</p>
                 </div>
                 <div class="swiper fans-say-swiper max-w-4xl mx-auto swiper-container-fix">
                   <div class="swiper-wrapper items-stretch">
@@ -175,8 +171,8 @@ const PageContent = {
                                       </div>
                                   </div>
                               </div>
-                              <p class="text-gray-700 text-sm mb-4 flex-grow">"The Nashville Hot Chicken at Tochi's is INCREDIBLE! Perfectly crispy with just the right amount of heat. I've tried hot chicken all over the country, and this is hands down the best."</p>
-                              <div class="text-xs text-gray-500">Wing Connoisseur</div>
+                              <p class="text-gray-700 text-sm mb-4 flex-grow">"Tochi's Nashville Hot Chicken is INCREDIBLE! Perfectly crispy with just the right amount of heat. I've tried hot chicken all over the country, and this is hands down the best in Myrtle Beach!"</p>
+                              <div class="text-xs text-gray-500">Hot Chicken Enthusiast</div>
                           </div>
                       </div>
                     </div>
@@ -192,8 +188,8 @@ const PageContent = {
                                       </div>
                                   </div>
                               </div>
-                              <p class="text-gray-700 text-sm mb-4 flex-grow">"The Honey Gold BBQ wings are addictive! Sweet, smoky, and perfectly sauced. I drive 30 minutes just to get my fix. The family pack is always our go-to for game nights!"</p>
-                              <div class="text-xs text-gray-500">Regular Since 2022</div>
+                              <p class="text-gray-700 text-sm mb-4 flex-grow">"Tochi's #2 sliders are addictive! The perfect combination of heat and flavor. I drive 30 minutes just to get my fix. Their family combos are always our go-to for game nights!"</p>
+                              <div class="text-xs text-gray-500">Tochi's Regular Since 2022</div>
                           </div>
                       </div>
                     </div>
@@ -209,8 +205,8 @@ const PageContent = {
                                       </div>
                                   </div>
                               </div>
-                              <p class="text-gray-700 text-sm mb-4 flex-grow">"The Caribbean Jerk wings are a flavor explosion! The perfect balance of sweet and spicy. I love that they're always crispy and never greasy. The best wings in Myrtle Beach, hands down!"</p>
-                              <div class="text-xs text-gray-500">Self-Proclaimed Wing Expert</div>
+                              <p class="text-gray-700 text-sm mb-4 flex-grow">"Tochi's tenders are a flavor explosion! The perfect balance of crispy coating and juicy chicken. I love that they're always fresh and never greasy. The best hot chicken in Myrtle Beach, hands down!"</p>
+                              <div class="text-xs text-gray-500">Self-Proclaimed Hot Chicken Expert</div>
                           </div>
                       </div>
                     </div>
@@ -267,62 +263,96 @@ const PageContent = {
     `,
 
     about: `
-                <div class="mb-12">
-                    <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-[var(--primary-color)]">
-                        <div class="flex items-center mb-6">
-                            <div class="w-1 h-8 bg-[var(--primary-color)] mr-4"></div>
-                            <h2 class="text-2xl font-bold text-[var(--text-dark)]">Our Story</h2>
-                        </div>
-                        <p class="text-[var(--text-medium)] leading-relaxed text-lg mb-4">
-                            Tochi's Hot Chicken opened its doors in 2025 with a simple vision: to bring authentic Nashville-style hot chicken to Myrtle Beach. We combine great food, bold flavors, and warm Southern hospitality to create a unique dining experience. Our founders, passionate about perfecting the art of hot chicken, wanted to create a place where every bite is packed with flavor.
-                        </p>
-                        <p class="text-[var(--text-medium)] leading-relaxed text-lg">
-                            Located in the heart of Myrtle Beach, we've become the go-to spot for sports fans, families, and anyone looking for great food and a fun atmosphere. Our state-of-the-art screens and sound system ensure you won't miss a moment of the action, no matter where you're seated.
-                        </p>
+        <div id="about-content" class="max-w-6xl mx-auto px-4 py-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-[var(--text-dark)] mb-4">Our Story</h1>
+                <p class="text-lg text-[var(--text-medium)] max-w-2xl mx-auto">Discover the passion and dedication behind Tochi's Hot Chicken</p>
+            </div>
+
+            <!-- Main Story Section -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-12 border-l-4 border-[#ff6b00]">
+                <div class="flex items-center mb-6">
+                    <div class="w-2 h-8 bg-[#ff6b00] mr-4 rounded"></div>
+                    <h2 class="text-3xl font-bold text-gray-900">From Nashville to Myrtle Beach</h2>
+                </div>
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-gray-700 leading-relaxed text-lg mb-6">
+                        Tochi's Hot Chicken opened its doors in 2025 with a simple yet powerful vision: to bring the authentic taste of Nashville-style hot chicken to the beautiful shores of Myrtle Beach. Our journey began with a deep passion for perfecting the art of hot chicken - that perfect balance of crispy, juicy chicken with just the right amount of heat that makes your taste buds dance.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed text-lg mb-6">
+                        Founded by chicken enthusiasts who spent years mastering traditional Nashville techniques, we wanted to create more than just a restaurant - we wanted to build a place where bold flavors meet warm Southern hospitality. Every recipe has been carefully crafted and tested to ensure that each bite delivers an unforgettable experience.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        Located in the heart of Myrtle Beach at 214 9th Ave N, we've quickly become the go-to destination for locals and tourists alike who crave authentic hot chicken. Whether you're a heat seeker looking for our spiciest offerings or someone who prefers milder flavors, we have something special waiting for you.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mission & Values Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="w-16 h-1 bg-[#ff6b00] mb-6 rounded"></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        To serve the most authentic Nashville-style hot chicken on the Grand Strand, using only the highest quality ingredients and time-honored cooking techniques. We're committed to delivering bold flavors with genuine Southern hospitality in every interaction.
+                    </p>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="w-16 h-1 bg-[#ff6b00] mb-6 rounded"></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Promise</h3>
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        Every piece of chicken is hand-breaded, perfectly seasoned, and cooked to order. We promise fresh ingredients, consistent quality, and heat levels that range from mild to "are you sure about this?" - all served with a smile and genuine care for your dining experience.
+                    </p>
+                </div>
+            </div>
+
+            <!-- What Makes Us Special -->
+            <div class="bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 rounded-xl shadow-lg p-8 mb-12">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-1 bg-[#ff6b00] mb-6 mx-auto rounded"></div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">What Makes Us Special</h3>
+                    <p class="text-[#ff6b00] font-semibold text-lg">"The Hottest Chicken in Myrtle Beach"</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <div class="text-3xl mb-3">🔥</div>
+                        <h4 class="font-bold text-gray-900 mb-2">Authentic Heat Levels</h4>
+                        <p class="text-gray-600 text-sm">From mild to extra hot, we've perfected the Nashville spice blend</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <div class="text-3xl mb-3">🍗</div>
+                        <h4 class="font-bold text-gray-900 mb-2">Fresh Daily</h4>
+                        <p class="text-gray-600 text-sm">Hand-breaded and cooked to order, never sitting under heat lamps</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <div class="text-3xl mb-3">❤️</div>
+                        <h4 class="font-bold text-gray-900 mb-2">Family Owned</h4>
+                        <p class="text-gray-600 text-sm">Local business committed to serving our Myrtle Beach community</p>
                     </div>
                 </div>
+            </div>
 
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                        <div class="w-12 h-1 bg-[var(--primary-color)] mb-6 mx-auto"></div>
-                        <h2 class="text-xl font-bold text-[var(--text-dark)] mb-4 text-center">Our Mission</h2>
-                        <p class="text-[var(--text-medium)] leading-relaxed">
-                            To serve authentic Nashville-style hot chicken with bold flavors and warm Southern hospitality, creating a memorable dining experience for every guest.
-                        </p>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                        <div class="w-12 h-1 bg-[var(--primary-color)] mb-6 mx-auto"></div>
-                        <h2 class="text-xl font-bold text-[var(--text-dark)] mb-4 text-center">Our Promise</h2>
-                        <p class="text-[var(--text-medium)] leading-relaxed">
-                            We promise to use only the highest quality ingredients, prepare each dish with care, and serve it with the perfect balance of heat and flavor.
-                        </p>
-                    </div>
+            <!-- Our Commitment -->
+            <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Commitment to You</h3>
+                <p class="text-gray-700 leading-relaxed text-lg max-w-4xl mx-auto">
+                    Whether you're stopping by for a quick lunch, bringing the family for dinner, or grabbing takeout for a beach day, we're committed to making every visit exceptional. Our team takes pride in serving not just great food, but creating an experience that keeps you coming back. At Tochi's Hot Chicken, you're not just a customer - you're part of our growing family of hot chicken lovers.
+                </p>
+                <div class="mt-8">
+                    <button class="bg-[#ff6b00] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#e65100] transition-colors" 
+                            onclick="window.PierogiApp.getNavigationManager().navigateToPage('menu')">
+                        Try Our Hot Chicken Today
+                    </button>
                 </div>
-
-                <!-- Our Commitment -->
-                <div class="bg-gradient-to-r from-red-50 to-pink-50 rounded-xl shadow-lg p-8 mb-12">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-1 bg-[var(--primary-color)] mb-6 mx-auto"></div>
-                        <h2 class="text-2xl font-bold text-[var(--text-dark)] mb-2">Our Commitment</h2>
-                        <p class="text-[var(--primary-color)] font-semibold">"Where Every Game Feels Like Home"</p>
-                    </div>
-                    <div class="bg-white rounded-lg p-6 shadow-sm">
-                        <p class="text-[var(--text-medium)] leading-relaxed text-lg text-center">
-                            Whether you're here for a quick lunch, a family dinner, or to enjoy our weekly specials, we're committed to making every visit memorable. Our team works tirelessly to ensure you have the best hot chicken, the coldest drinks, and the most delicious sides in Myrtle Beach. At Tochi's Hot Chicken, you're not just a customer - you're part of our family.
-                        </p>
-                    </div>
-                </div>
-
-
             </div>
         </div>
     `,
 
     contact: `
-        <div id="contact-content" class="max-w-2xl mx-auto">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-[var(--text-dark)] mb-4">Contact Us</h1>
+        <div id="contact-content" class="max-w-2xl mx-auto px-4 py-8 mt-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-[var(--text-dark)] mb-4">Contact Us</h1>
                 <p class="text-lg text-[var(--text-medium)]">We'd love to hear from you!</p>
             </div>
             

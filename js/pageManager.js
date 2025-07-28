@@ -2,6 +2,8 @@
  * Page Management Module
  * Handles page loading, content rendering, and page-specific functionality
  */
+import { initParticles, destroyParticles } from './particles.js';
+
 class PageManager {
     constructor(cartManager) {
         this.cartManager = cartManager;
@@ -73,6 +75,16 @@ class PageManager {
         // Initialize Swiper after content is loaded
         setTimeout(() => {
             this.initializeSwipers();
+            
+            // Initialize particles for home page
+            if (page === 'home') {
+                setTimeout(() => {
+                    initParticles();
+                }, 200); // Small delay to ensure DOM is ready
+            } else {
+                // Destroy particles when leaving home page
+                destroyParticles();
+            }
             
             // Force scroll to top after all content is rendered
             window.scrollTo({ top: 0, behavior: 'smooth' });
